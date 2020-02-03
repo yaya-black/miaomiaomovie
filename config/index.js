@@ -10,11 +10,19 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+       '/api': {
+      target:'http://39.97.33.178', //反向代理的目标
+      changeOrigin:true , //是否改变反向代理的地址
+      // pathRewrite: {
+      //   '^/api': ''
+      // }
+  }},
+    
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+     host: 'localhost', // can be overwritten by process.env.HOST
+     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
