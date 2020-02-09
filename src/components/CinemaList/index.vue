@@ -1,6 +1,8 @@
 <template>
  
     <div class="cinema_body">
+      <Loading v-if="isLoading"/>
+      <Scroller v-else>
       <!-- <ul>
         <li>
           <div>
@@ -32,10 +34,11 @@
             <span>{{item.distance}}</span>
           </div>
           <div class="card">
-           <div v-for="(num,key) in item.tag" v-if="num===1" :key="key" :class="key|classCard">{{key|formatCard}}</div>
+           <div v-for="(num,key) in item.tag" v-show="num===1" :key="key" :class="key|classCard">{{key|formatCard}}</div>
           </div>
         </li>
       </ul>
+      </Scroller>
     </div>
       
 
@@ -46,16 +49,41 @@ export default {
   name: "CinemaList",
   data(){
     return {
-      cinemaList:[]
+      cinemaList:[],
+      isLoading:true,
+      prevCityId:-1
     };
   },
-  mounted() {
+  activated() {
+    var cityId=this.$store.state.city.id;
+    if(this.prevCityId===cityId) {return;}
+    this.isLoading=true;
     this.axios.get('/api/cinemaList').then((res)=>{
       var msg=res.data.msg;
       if(msg==='ok'){
-      this.cinemaList=res.data.data.cinemas;
+        var data = res.data.data.cinemas;
+        var  {cinemaList}=this.handleToFlag(data);
+        this.cinemaList=cinemaList;
+        this.isLoading=false;
+        this.prevCityId=cityId;//这个一定要写在渲染成功后面
       }
     })
+  },
+  methods:{
+     handleToFlag(datas) {
+      var cityId=this.$store.state.city.id;
+      //console.log(cityId);
+       var  cinemaList=[];
+        for(var i=0;i<datas.length;i++){ 
+           if(datas[i].flag==cityId)
+            {
+              cinemaList.push(datas[i]);
+            }   
+        }
+        return{
+              cinemaList
+            };     
+    }
   },
   //过滤器用来渲染页面以及响应的颜色（tag里面是对象，用过滤器来进行）
   filters:{

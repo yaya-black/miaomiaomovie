@@ -1,28 +1,28 @@
 {
     "msg": "ok",
+    "flag":10,
     "status": 0,
     "data": {
         "ComingList": [
             
             {
-                "flag":10,
+                
                 "id": 12182317,
                 "haspromotionTag": false,
                 "img": "http://p1.meituan.net/w.h/movie/967b253953bc7e660cfadbf9d78f67b62852693.jpg",
                 "version": "v2dimax",
-                "nm": "误杀",
+                "nm": "一次就好",
                 "proShow": false,
                 "sc": 9.5,
                 "globalReleased": true,
                 "wish": 40632,
                 "star": "肖央，谭卓，陈冲",
                 "rt": "2019-12-13",
-                "showInfo": "今天暂无场次",
+                "showInfo": "今天2场次",
                 "showst": 3,
                 "wishst": 0
             },
             {
-                "flag":10,
                 "id": 1238783,
                 "haspromotionTag": false,
                 "img": "https://p0.meituan.net/movie/3dc44919f0917b5823c867813f29fba42625689.jpg",
@@ -39,7 +39,6 @@
                 "wishst": 0
             },
             {
-                "flag":10,
                 "id": 1212608,
                 "haspromotionTag": false,
                 "img": "https://p0.meituan.net/movie/b0e0d6ce9914f37e7f9f6ade13e096342721150.jpg@464w_644h_1e_1c" ,
@@ -56,7 +55,6 @@
                 "wishst": 0
             },
             {
-                "flag":10,
                 "id": 1301612,
                 "haspromotionTag": false,
                 "img": "https://p0.meituan.net/movie/2d4835513a81f6121189e1c3800eb1a3647939.jpg@464w_644h_1e_1c",
@@ -73,7 +71,6 @@
                 "wishst": 0
             },
             {
-                "flag":10,
                 "id": 1298349,
                 "haspromotionTag": false,
                 "img": "https://p0.meituan.net/moviemachine/6d175dd08812a4ff3f048f7b7e4ed449405105.jpg@464w_644h_1e_1c",
@@ -90,7 +87,6 @@
                 "wishst": 0
             },
             {
-                "flag":10,
                 "id": 338740,
                 "haspromotionTag": false,
                 "img": "https://p0.meituan.net/movie/f09d25b5dc2d0080fa93db9ffaaf4c5a6389423.jpg@464w_644h_1e_1c",
@@ -107,7 +103,6 @@
                 "wishst": 0
             },
             {
-                "flag":45,
                 "id": 338747,
                 "haspromotionTag": false,
                 "img": "https://p0.meituan.net/movie/077f41ce44d059a01288e0d7bf704f9f1642095.jpg@464w_644h_1e_1c",
@@ -124,7 +119,6 @@
                 "wishst": 0
             },
             {
-                "flag":45,
                 "id": 338744,
                 "haspromotionTag": false,
                 "img": "https://p1.meituan.net/movie/258bfc30cec1e20070697ab090dfcc052620540.jpg@464w_644h_1e_1c",
@@ -141,7 +135,6 @@
                 "wishst": 0
             },
             {
-                "flag":45,
                 "id": 338742,
                 "haspromotionTag": false,
                 "img": "https://p0.meituan.net/movie/aa61bd5809e99ff9b23e6276cf665bc92030231.jpg@464w_644h_1e_1c",

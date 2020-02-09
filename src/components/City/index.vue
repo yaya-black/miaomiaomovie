@@ -25,28 +25,33 @@
       </div>
       </div>-->
       <div class="city_list">
+        <Loading v-if="isLoading"/>
+        <Scroller ref="city_list" v-else>
+          <div>
         <div class="city_hot">
           <h2>热门城市</h2>
           <ul class="clearfix">
             <!-- v-for： 表示循环的意思 ,要带上key：这是唯一值-->
-            <li v-for="item in hotList" :key="item.id">{{item.nm}}</li>
+            <li v-for="item in hotList" :key="item.id" @tap="handleToCity(item.nm,item.id)">{{item.nm}}</li>
           </ul>
         </div>
         <div class="city_sort" ref="city_sort">
           <div v-for="item in cityList" :key="item.index">
             <h2>{{item.index}}</h2>
             <ul>
-              <li v-for="itemList in item.list" :key="itemList.id">{{itemList.nm}}</li>
+              <li v-for="itemList in item.list" :key="itemList.id" @tap="handleToCity(itemList.nm,itemList.id)">{{itemList.nm}}</li>
             </ul>
           </div>
         </div>
+        </div>
+         </Scroller>
       </div>
         <div class="city_index">
           <ul>
 						<!-- 第一个index是下标，即传入到handleToIndex()中的index -->
             <li v-for="(item,index) in cityList" :key="item.index" @click="handleToIndex(index)">{{item.index}}</li>
           </ul>
-        </div>
+         </div>
       </div> 
 </template>
 
@@ -58,19 +63,35 @@ export default {
     //将结果渲染到页面中
     return {
       cityList: [],
-      hotList: []
+      hotList: [],
+      isLoading:true,
     };
   },
   mounted() {
+    
+         //本地存储
+    var cityList=window.localStorage.getItem('cityList');
+    var hotList=window.localStorage.getItem('hotList');
+    if(cityList && hotList){ //进行本地存储
+      this.cityList=JSON.parse(cityList);
+      this.hotList=JSON.parse(hotList);
+       this.isLoading=false;
+    }
     this.axios.get("/api/cityList").then(res => {
       //处理数据，1、首先进行判断，看是否请求成功。
       var msg = res.data.msg;
       if (msg == "ok") {
+        this.isLoading=false;
         var data = res.data.data.cities;
         //2、给城市分组，分成这种形式：[{index:'A',list:[{nm:'安徽'，id:123}]}]
         var { cityList, hotList } = this.formatCityList(data); //调用下面的函数，存放的返回值（一个对象）
+       // console.log(hotList);
         this.cityList = cityList;
         this.hotList = hotList;
+        //console.log(hotList);
+        //本地存储
+        window.localStorage.setItem('cityList',JSON.stringify(cityList));
+        window.localStorage.setItem('hotList',JSON.stringify(hotList));
       }
     });
   },
@@ -98,6 +119,7 @@ export default {
           for (var j = 0; j < cityList.length; j++) {
             if (cityList[j].index === firstLetter) {
               cityList[j].list.push({ nm: cities[i].nm, id: cities[i].id });
+              
             }
           }
         }
@@ -131,9 +153,17 @@ export default {
 		handleToIndex(index){
 		
 			var h2=this.$refs.city_sort.getElementsByTagName('h2');
-			this.$refs.city_sort.parentNode.scrollTop=h2[index].offsetTop;//改变滚动条的位置
+      // this.$refs.city_sort.parentNode.scrollTop=h2[index].offsetTop;
+      //改变滚动条的位置
+      this.$refs.city_list.ToScrollTop(-h2[index].offsetTop);
 			//this.$refs.city_List.toScrollTop(-h2[index].offsetTop);
-		}
+    },
+    handleToCity(nm,id) {  //对应的改变城市名的方法
+       this.$store.commit('city/CITY_INFO',{nm,id}); //修改状态管理
+       window.localStorage.setItem('nowNm',nm); //刷新后保持原有的记录（利用本地存储）
+       window.localStorage.setItem('nowId',id);
+       this.$router.push('/Movie/MoviePlaying'); //路由跳转
+    }
   }
 };
 </script>

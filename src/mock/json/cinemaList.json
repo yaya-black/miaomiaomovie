@@ -2,7 +2,9 @@
 "msg":"ok",
 "status":0,
 "data":{
+      
        "cinemas":[{
+        "flag":10,
         "id":17158,
         "mark":0,
         "nm":"JIA(嘉来影城九亭店)",
@@ -25,7 +27,7 @@
         }
     },
     {
-     
+        "flag":10,    
          "id":16620,
          "mark":0,
          "nm":"星轶IMAX影城（九亭U天地旗舰店）",
@@ -66,6 +68,7 @@
          }
      },
      {
+        "flag":10,
          "id":164,
         "mark":0,
         "nm":"曲阳影都",
@@ -87,7 +90,8 @@
         "cardPromotionTag":"开卡特惠，首单2张立减10元"
     }},
    {
-        "id":17158,
+       "flag":10,
+        "id":17152,
         "mark":0,
         "nm":"JIA(嘉来影城九亭店)",
         "sellPrice":"18",
@@ -109,7 +113,8 @@
         }
     },
     {
-    "id":16620,
+    "flag":10,
+    "id":16629,
     "mark":0,
     "nm":"星轶IMAX影城（九亭U天地旗舰店）",
     "sellPrice":"22",
@@ -146,6 +151,73 @@
     },
     "promotion":{
         "cardPromotionTag":"开卡特惠，首单2张立减2元"
+    }
+},
+{
+    "flag":45,
+    "id":189,
+   "mark":0,
+   "nm":"IMAX",
+   "sellPrice":"23",
+   "addr":"沙坪坝区（近清溪路）",
+   "distance":"1063km",
+   "tag":{
+       "allowRefund":0, 
+       "buyout":0,
+       "cityCardTag":0,
+       "deal":0,
+       "endorse":0,
+       "hallTypeVoList":[],
+       "sell":1, 
+       "snack":0,
+       "vipTag":"折扣卡"
+},
+"promotion":{
+   "cardPromotionTag":"开卡特惠，首单2张立减10元"
+}},
+{
+    "flag":45,
+    "id":102,
+   "mark":0,
+   "nm":"UME",
+   "sellPrice":"23",
+   "addr":"渝中区时代天街路1号",
+   "distance":"1063km",
+   "tag":{
+       "allowRefund":0, 
+       "buyout":0,
+       "cityCardTag":0,
+       "deal":0,
+       "endorse":0,
+       "hallTypeVoList":[],
+       "sell":1, 
+       "snack":0,
+       "vipTag":"折扣卡"
+},
+"promotion":{
+   "cardPromotionTag":"开卡特惠，首单2张立减10元"
+}},
+{
+    "flag":45,
+    "id":17142,
+    "mark":0,
+    "nm":"万达影城",
+    "sellPrice":"18",
+    "addr":"江北区观音桥步行街",
+    "distance":"1071km",
+    "tag":{
+        "allowRefund":1,
+        "buyout":0,
+        "cityCardTag":0,
+        "deal":0,
+        "endorse":1,
+        "hallTypeVoList":[],
+        "sell":1,
+        "snack":1,
+        "vipTag":"折扣卡"
+    },
+    "promotion":{
+        "cardPromotionTag":"开卡特惠，首单2张立减10元"
     }
 }
     ] 

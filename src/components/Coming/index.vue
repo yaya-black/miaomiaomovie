@@ -2,6 +2,8 @@
 // 使代码对齐快捷键：shift+alt+F
 <template>
   <div class="movie_body">
+    <Loading  v-if="isLoading"/>
+    <Scroller v-else>
     <ul>
       <!-- <li>
         <div class="pic_show">
@@ -17,7 +19,7 @@
         </div>
         <div class="btn_pre">预售</div>
       </li>-->
-      <li v-for="item in ComingList" :key="item.id">
+      <li v-for="item in   ComingList" :key="item.id">
         <div class="pic_show"><img :src="item.img | setWH('128.180')"  ></div>
         <div class="info_list">
           <h2>{{item.nm}} <img v-if="item.version" src="@/assets/maxs.png" alt=""></h2>
@@ -28,6 +30,7 @@
         <div class="btn_pre">预售</div>
       </li>
     </ul>
+     </Scroller>
   </div>
 </template>
 
@@ -36,18 +39,46 @@ export default {
   name: "Coming",
   data() {
     return {
-      ComingList: []
+      ComingList:[],
+      isLoading:true,
+      prevCityId:-1,
+     ComingFlag:[]
+      
     };
   },
-  mounted() {
+activated() {
+   var cityId=this.$store.state.city.id;
+    if(this.prevCityId===cityId) {return;}
+      this.isLoading=true;
     this.axios.get("/api/movieComingList").then(res => {
-      console.log(res);
       var msg = res.data.msg;
       if (msg === "ok") {
-        this.ComingList = res.data.data.ComingList;
+        // this.prevCityId=cityId;
+        var data = res.data.data.ComingList;
+        var  {ComingList}=this.handleToFlag(data);
+        this.ComingList=ComingList;
+        this.isLoading=false;
+        this.prevCityId=cityId;
+       // console.log(this.ComingList);
       }
-    });
-  }
+    })
+  },
+   methods: {
+     handleToFlag(datas) {
+      var cityId=this.$store.state.city.id;
+      //console.log(cityId);
+       var  ComingList=[];
+        for(var i=0;i<datas.length;i++){ 
+           if(datas[i].flag==cityId)
+            {
+              ComingList.push(datas[i]);
+            }   
+        }
+        return{
+              ComingList
+            };     
+    }
+   } 
 };
 </script>
 

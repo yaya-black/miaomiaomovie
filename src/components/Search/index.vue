@@ -50,7 +50,8 @@ export default {
   data() {
 	  return{
 		  message:"",
-		  moviesList:[]
+      moviesList:[],
+      prevCityId:-1
 	  }
   },
   //函数防抖：即在最后一次输入的时候才响应，不用每次都响应
@@ -63,8 +64,9 @@ export default {
   watch: {
 	  message(newVal){
       var that=this;
+       var cityId=this.$store.state.city.id;
        this.cancelRequest();
-		  this.axios.get('/api/searchList?cityId=10&kw='+newVal, {
+		  this.axios.get('/api/searchList?cityId='+cityId +'&kw='+newVal, {
         cancelToken: new this.axios.CancelToken(function(c) {
                     that.source = c;
                 })  //取消的方法
