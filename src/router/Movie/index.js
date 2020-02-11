@@ -23,6 +23,26 @@ export default {
             component:() => import('@/components/Search')
            
         },
+        {
+            path:'detail/1/:movieId',
+            components:{
+                default:()=>import('@/components/MoviePlaying'), //指向没有名字的路由组件
+                detail:()=>import('@/views/Movie/detail')
+            },
+            props:{
+                detail:true
+            }
+        },
+        {
+            path:'detail/2/:movieId',
+            components:{
+                default:()=>import('@/components/Coming'), //指向没有名字的路由组件
+                detail:()=>import('@/views/Movie/detail')
+            },
+            props:{
+                detail:true
+            }
+        },
         {//重定向（遇到找不到的路由，重定向到Movie）
             path : '/Movie',
             redirect : '/Movie/MoviePlaying'
