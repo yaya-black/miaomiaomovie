@@ -18,11 +18,11 @@
           </div>-->
           <!-- 图片是动态变化的（其大小是动态变化的） -->
 
-          <div class="pic_show" @tap="handeleToDetail">
+          <div class="pic_show" @tap="handeleToDetail(item.id)">
             <img :src="item.img | setWH('128.180')" />
           </div>
           <div class="info_list">
-            <h2>
+            <h2 @tap="handeleToDetail(item.id)">
               {{item.nm}}
               <img v-if="item.version" src="@/assets/maxs.png" alt />
             </h2>
@@ -98,8 +98,8 @@ export default {
     });
   },
   methods: {
-    handeleToDetail() {
-      console.log("handeleToDetail");
+    handeleToDetail(movieId) {
+      this.$router.push('/movie/detail/1/'+movieId);//用动态路由跳转到详情页
     },
     handleToScroll(pos) {
       if (pos.y > 30) {
