@@ -11,7 +11,7 @@ Vue.use(Router)
 
 export default new Router({
   mode: 'history',
-  base: process.env.BASE_URL,
+   base: process.env.BASE_URL,
   routes: [   
      CinemaRouter, //写的组件，这种方式不适用于大项目
      MineRouter,
